@@ -21,7 +21,7 @@ public class User {
     private String login;
     private String password;
 
-    @OneToOne
+    @OneToMany
     @MapsId
     private License license;
 }

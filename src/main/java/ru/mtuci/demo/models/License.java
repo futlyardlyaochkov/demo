@@ -1,10 +1,7 @@
 package ru.mtuci.demo.models;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,5 +18,12 @@ public class License {
     @GeneratedValue
     private int id;
 
-    private String key, pub_key, name;
+    @Column(name = "name")
+    private String name;
+
+    @Column(name = "pub_key")
+    private String pub_key;
+
+    @Column(name = "key")
+    private String key;
 }
