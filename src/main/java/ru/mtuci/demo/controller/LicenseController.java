@@ -7,6 +7,7 @@ import ru.mtuci.demo.service.LicenseService;
 
 import java.util.List;
 
+
 @RestController
 @RequestMapping("/license")
 public class LicenseController {
