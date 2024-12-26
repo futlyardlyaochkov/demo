@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class JwtTokenProvider {
 
-    private final UserDetailsService userDetailsService = null;
+    private final UserDetailsService userDetailsService;
 
     @Value("${jwt.secret}")
     private String secret;

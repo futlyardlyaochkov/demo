@@ -3,10 +3,9 @@ package ru.mtuci.demo.models;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-
 import java.util.Set;
 import java.util.stream.Collectors;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 @Getter
 @AllArgsConstructor

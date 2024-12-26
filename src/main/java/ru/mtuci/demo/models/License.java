@@ -2,28 +2,63 @@ package ru.mtuci.demo.models;
 
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-@Table(name = "license")
-@Getter
-@Setter
+import java.sql.Date;
+import java.util.List;
+
+
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(name = "license")
 public class License {
     @Id
-    @GeneratedValue
-    private int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    @Column(name = "name")
-    private String name;
+    // первая активация лицензии
+    private Date firstActivationDate;
 
-    @Column(name = "pub_key")
-    private String pub_key;
+    // окончание действия лицензии
+    private Date endingDate;
 
-    @Column(name = "key")
-    private String key;
+    // блокировка лицензии
+    private boolean isBlocked;
+
+    private Integer deviceCount;
+
+    // длительность действия лицензии
+    private Long Duration;
+
+    // код лицензии
+    private String code;
+
+    // описание
+    @Column(length = 500)
+    private String description;
+
+    // тип
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @JoinColumn(name = "type_id")
+    private LicenseType licenseType;
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    @JoinColumn(name = "product_id")
+    private Product product;
+
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    @JoinColumn(name = "owner_id")
+    private User owner;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "license")
+    private List<LicenseHistory> licenseHistories;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "license")
+    private List<DeviceLicense> deviceLicenses;
 }

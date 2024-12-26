@@ -7,17 +7,16 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 
+@Component
 @RequiredArgsConstructor
 public class JwtTokenFilter extends OncePerRequestFilter {
-    private final JwtTokenProvider jwtTokenProvider = null;
-    private final UserDetailsService userDetailsService = null;
-
-    public JwtTokenFilter(JwtTokenProvider jwtTokenProvider, UserDetailsService userDetailsService) {
-    }
+    private final JwtTokenProvider jwtTokenProvider;
+    private final UserDetailsService userDetailsService;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request,

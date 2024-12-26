@@ -11,7 +11,8 @@ public enum Permissions {
 
     private final String permission;
 
-    Permissions(String permission) {
-        this.permission = permission;
+    @Override
+    public String toString() {
+        return permission;
     }
 }
